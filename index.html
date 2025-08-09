@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="stop.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">💰 Personal Expense Tracker</h1>
+            <p class="subtitle">Track your income and expenses easily</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Balance Summary Section -->
+            <section class="balance-summary">
+                <div class="balance-card">
+                    <h2>Current Balance</h2>
+                    <div class="balance-amount" id="current-balance">$0.00</div>
+                </div>
+                <div class="summary-cards">
+                    <div class="summary-card income-card">
+                        <h3>Total Income</h3>
+                        <div class="amount" id="total-income">$0.00</div>
+                    </div>
+                    <div class="summary-card expense-card">
+                        <h3>Total Expenses</h3>
+                        <div class="amount" id="total-expenses">$0.00</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Transaction Section -->
+            <section class="add-transaction">
+                <h2>Add New Transaction</h2>
+                <form id="transaction-form" class="transaction-form">
+                    <div class="form-group">
+                        <label for="transaction-type">Transaction Type:</label>
+                        <select id="transaction-type" required>
+                            <option value="">Select Type</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transaction-amount">Amount ($):</label>
+                        <input type="number" id="transaction-amount" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transaction-category">Category:</label>
+                        <select id="transaction-category" required>
+                            <option value="">Select Category</option>
+                            <!-- Options will be populated by JavaScript based on type -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transaction-description">Description:</label>
+                        <input type="text" id="transaction-description" placeholder="Enter description" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transaction-date">Date:</label>
+                        <input type="date" id="transaction-date" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                </form>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <h2>Filter Transactions</h2>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="filter-type">Type:</label>
+                        <select id="filter-type">
+                            <option value="all">All</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-category">Category:</label>
+                        <select id="filter-category">
+                            <option value="all">All Categories</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-month">Month:</label>
+                        <input type="month" id="filter-month">
+                    </div>
+
+                    <button id="clear-filters" class="btn btn-secondary">Clear Filters</button>
+                </div>
+            </section>
+
+            <!-- Transaction History Section -->
+            <section class="transaction-history">
+                <h2>Transaction History</h2>
+                <div class="history-container">
+                    <div id="transaction-list" class="transaction-list">
+                        <p class="no-transactions">No transactions yet. Add your first transaction above!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Simple Chart Section (Optional) -->
+            <section class="chart-section" style="display: none;" id="chart-section">
+                <h2>Expense Categories</h2>
+                <div class="chart-container">
+                    <canvas id="expense-chart" width="400" height="200"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Personal Expense Tracker. Simple & Effective.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="stop.js"></script>
+</body>
+</html>

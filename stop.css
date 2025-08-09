@@ -1,0 +1,911 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    animation: backgroundShift 10s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundShift {
+    0% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    100% { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Loading Animation */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 1s ease-in-out 2s forwards;
+}
+
+.loader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Header Styles with Animations */
+.header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInFromTop 1s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: floatingBubbles 8s ease-in-out infinite;
+}
+
+@keyframes floatingBubbles {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.logo {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    animation: bounceIn 1.5s ease-out 0.5s both;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 1s both;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.9;
+    }
+}
+
+/* Main Content Animations */
+.main-content {
+    padding: 2rem 0;
+    animation: fadeInContent 1s ease-out 1.5s both;
+}
+
+@keyframes fadeInContent {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Currency Selector Styles */
+.currency-selector {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    animation: slideInFromLeft 1s ease-out 0.5s both;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.currency-selector h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.currency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.currency-option {
+    padding: 1.5rem;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    animation: popIn 0.6s ease-out both;
+}
+
+.currency-option:nth-child(1) { animation-delay: 0.1s; }
+.currency-option:nth-child(2) { animation-delay: 0.2s; }
+.currency-option:nth-child(3) { animation-delay: 0.3s; }
+.currency-option:nth-child(4) { animation-delay: 0.4s; }
+.currency-option:nth-child(5) { animation-delay: 0.5s; }
+.currency-option:nth-child(6) { animation-delay: 0.6s; }
+.currency-option:nth-child(7) { animation-delay: 0.7s; }
+.currency-option:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8) translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.currency-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: left 0.5s;
+}
+
+.currency-option:hover::before {
+    left: 100%;
+}
+
+.currency-option:hover {
+    border-color: #667eea;
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.currency-option.active {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+    animation: glowing 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowing {
+    0% { box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4); }
+    100% { box-shadow: 0 15px 30px rgba(102, 126, 234, 0.8); }
+}
+
+.currency-flag {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+/* Fixed bounce animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Example usage - apply to any element */
+.bounce-element {
+    animation: bounce 2s infinite;
+}
+
+/* Additional bounce variations */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-50px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05) translateY(-10px);
+    }
+    70% {
+        transform: scale(0.95) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes bounceUp {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-15px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    75% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes bounceDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(15px);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+    75% {
+        transform: translateY(3px);
+    }
+}
+
+/* Usage classes */
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+.bounce-in {
+    animation: bounceIn 1s ease-out;
+}
+
+.bounce-up {
+    animation: bounceUp 1.5s ease-in-out infinite;
+}
+
+.bounce-down {
+    animation: bounceDown 1.5s ease-in-out infinite;
+}
+
+/* Hover effects */
+.bounce-on-hover:hover {
+    animation: bounce 0.6s ease-in-out;
+}
+
+/* Customizable bounce - you can adjust timing and distance */
+.custom-bounce {
+    animation: bounce 1s ease-in-out infinite;
+    animation-delay: 0.2s; /* Optional delay */
+}
+
+/* Bounce with different timing functions */
+.bounce-smooth {
+    animation: bounce 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.bounce-sharp {
+    animation: bounce 1.5s ease-out infinite;
+}
+/* Balance Summary Animations */
+.balance-summary {
+    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    animation: slideInFromRight 1s ease-out 1s both;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(79, 172, 254, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: cardFloat 3s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.balance-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: ripple 4s linear infinite;
+}
+
+@keyframes ripple {
+    0% { transform: scale(0.5) rotate(0deg); opacity: 1; }
+    100% { transform: scale(2) rotate(360deg); opacity: 0; }
+}
+
+.balance-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+.balance-amount {
+    font-size: 3.5rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    animation: numberCount 2s ease-out 2s both;
+}
+
+@keyframes numberCount {
+    0% { 
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.summary-card {
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    animation: slideUpCard 0.8s ease-out both;
+}
+
+.summary-card:nth-child(1) { animation-delay: 1.2s; }
+.summary-card:nth-child(2) { animation-delay: 1.4s; }
+
+@keyframes slideUpCard {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.summary-card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.income-card {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    box-shadow: 0 15px 30px rgba(67, 233, 123, 0.3);
+}
+
+.expense-card {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    box-shadow: 0 15px 30px rgba(250, 112, 154, 0.3);
+}
+
+/* Form Styles with Animations */
+.add-transaction {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInFromBottom 1s ease-out 1.8s both;
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.add-transaction h2 {
+    margin-bottom: 2rem;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    animation: slideInFromLeft 0.8s ease-out 2s both;
+}
+
+.transaction-form {
+    display: grid;
+    gap: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    animation: fadeInForm 0.6s ease-out both;
+}
+
+.form-group:nth-child(1) { animation-delay: 2.2s; }
+.form-group:nth-child(2) { animation-delay: 2.4s; }
+.form-group:nth-child(3) { animation-delay: 2.6s; }
+.form-group:nth-child(4) { animation-delay: 2.8s; }
+
+@keyframes fadeInForm {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-group label {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 1rem;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+    background: white;
+}
+
+.amount-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 1rem;
+    z-index: 1;
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+.amount-input input {
+    padding-left: 3rem;
+}
+
+/* Button Styles with Animations */
+.btn {
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    animation: buttonGlow 3s ease-in-out infinite;
+    margin-top: 1rem;
+}
+
+@keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+    50% { box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6); }
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(-2px) scale(1.02);
+    animation: buttonPress 0.2s ease;
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.02); }
+}
+
+/* Filter Section Animations */
+.filter-section {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInFromLeft 1s ease-out 2.2s both;
+}
+
+.filter-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+}
+
+/* Exchange Rate Section */
+.exchange-rate-section {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInFromRight 1s ease-out 2.4s both;
+}
+
+.exchange-rates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.rate-item {
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    animation: rateFlip 0.6s ease-out both;
+}
+
+.rate-item:nth-child(1) { animation-delay: 2.6s; }
+.rate-item:nth-child(2) { animation-delay: 2.8s; }
+.rate-item:nth-child(3) { animation-delay: 3s; }
+
+@keyframes rateFlip {
+    0% {
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+}
+
+/* Transaction History Animations */
+.transaction-history {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInFromBottom 1s ease-out 2.6s both;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fadeInTransaction 0.6s ease-out both;
+}
+
+@keyframes fadeInTransaction {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.transaction-item:hover {
+    transform: translateX(10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .currency-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .currency-option {
+        padding: 1rem;
+    }
+    
+    .currency-flag {
+        font-size: 2rem;
+    }
+    
+    .balance-summary {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .transaction-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .balance-amount {
+        font-size: 2.5rem;
+    }
+}
+
+/* Mobile Specific Happy Animations */
+@media (max-width: 768px) {
+    .currency-option:active {
+        animation: mobilePress 0.2s ease;
+    }
+    
+    @keyframes mobilePress {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+    }
+    
+    .btn:active {
+        animation: mobileBounce 0.3s ease;
+    }
+    
+    @keyframes mobileBounce {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.98); }
+        100% { transform: scale(1); }
+    }
+}
+
+/* Special Effects */
+.celebration {
+    animation: celebrate 1s ease-out;
+}
+
+@keyframes celebrate {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    50% { transform: scale(1.2) rotate(5deg); }
+    75% { transform: scale(1.1) rotate(-5deg); }
+}
+
+.success-flash {
+    animation: successFlash 0.5s ease-out;
+}
+
+@keyframes successFlash {
+    0% { background-color: rgba(40, 167, 69, 0.2); }
+    100% { background-color: transparent; }
+}
+
+/* Footer Animations */
+.footer {
+    background: rgba(52, 58, 64, 0.95);
+    backdrop-filter: blur(15px);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideInFromBottom 1s ease-out 3s both;
+}
+
+/* Scroll Animations */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
